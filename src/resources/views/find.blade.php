@@ -12,9 +12,6 @@
       color: white;
       padding: 5px 40px;
     }
-    tr:nth-child(odd) td{
-      background-color: #FFFFFF;
-    }
     td {
       padding: 25px 40px;
       background-color: #EEEEEE;
@@ -24,19 +21,30 @@
 </head>
 
 <body>
-  @section('title', 'index.blade.php')
+  @section('title', 'find.blade.php')
 
   @section('content')
+  <form action="find" method="POST">
+  @csrf
+    <input type="text" name="input" value="{{$input}}">
+    <input type="submit" value="見つける">
+  </form>
+  @if (@isset($item))
   <table>
     <tr>
-      <th>Data</th>
+      <th>id</th>
+      <th>name</th>
+      <th>age</th>
+      <th>nationality</th>
     </tr>
-    @foreach ($authors as $author)
-      <tr>
-        <td>{{$author->getDetail()}}</td>
-      </tr>
-    @endforeach
+    <tr>
+      <td>{{$item->id}}</td>
+      <td>{{$item->name}}</td>
+      <td>{{$item->age}}</td>
+      <td>{{$item->nationality}}</td>
+    </tr>
   </table>
+  @endif
   @endsection
 </body>
 
