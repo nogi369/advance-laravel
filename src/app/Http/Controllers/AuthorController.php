@@ -11,8 +11,32 @@ class AuthorController extends Controller
   // データ一覧ページの表示
   public function index()
   {
-      $authors = Author::all();
-      return view('index', ['authors' => $authors]);
+    $authors = Author::all();
+    return view('index', ['authors' => $authors]);
+  }
+
+  public function find()
+  {
+    return view('find', ['input' => '']);
+  }
+
+  public function search(Request $request)
+  {
+    $item = Author::where('name', 'LIKE',"%{$request->input}%")->first();
+    // $item = Author::where('name', $request->input)->first();
+    $param = [
+        'input' => $request->input,
+        'item' => $item
+    ];
+    return view('find', $param);
+  }
+  // bindアクション
+  public function bind(Author $author)
+  {
+    $data = [
+        'item'=>$author,
+    ];
+    return view('author.binds', $data);
   }
 
   // データ追加用ページの表示
