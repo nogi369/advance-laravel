@@ -12,6 +12,7 @@ class AuthorController extends Controller
   public function index()
   {
     $authors = Author::all();
+    // dd($authors);
     return view('index', ['authors' => $authors]);
   }
 
@@ -50,6 +51,7 @@ class AuthorController extends Controller
   public function create(Request $request){
     // リクエストの全ての情報を取得する
     $form = $request->all();
+    // dd($form);
     // 追加機能 = Eloquentのcreateメソッドを使用
     Author::create($form);
     return redirect('/');
@@ -65,12 +67,13 @@ class AuthorController extends Controller
   public function update(Request $request)
   {
     $form = $request->all();
+    // dd($form);
     unset($form['_token']);
     Author::find($request->id)->update($form);
     return redirect('/');
   }
 
-  // データ編集ページの表示
+  // データ削除ページの表示
   public function delete(Request $request){
     $author = Author::find($request->id);
     return view('delete', ['author' => $author]);
@@ -79,6 +82,7 @@ class AuthorController extends Controller
   // 削除機能
   public function remove(Request $request)
   {
+    // dd($request->all());
     Author::find($request->id)->delete();
     return redirect('/');
   }
