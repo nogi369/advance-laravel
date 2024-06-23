@@ -29,12 +29,22 @@
   @section('content')
   <table>
     <tr>
-      <th>Data</th>
+      <th>id</th>
+      <th>name</th>
+      <th>age</th>
+      <th>nationality</th>
+      <!-- <th>Data</th> -->
     </tr>
     @foreach ($authors as $author)
-      <tr>
+    <tr>
+      <td>{{$author->id}}</td>
+      <td>{{$author->name}}</td>
+      <td>{{$author->age}}</td>
+      <td>{{$author->nationality}}</td>
+    </tr>
+      <!-- <tr>
         <td>{{$author->getDetail()}}</td>
-      </tr>
+      </tr> -->
     @endforeach
   </table>
   @endsection
