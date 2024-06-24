@@ -33,7 +33,6 @@
       <th>name</th>
       <th>age</th>
       <th>nationality</th>
-      <!-- <th>Data</th> -->
     </tr>
     @foreach ($authors as $author)
     <tr>
@@ -42,9 +41,6 @@
       <td>{{$author->age}}</td>
       <td>{{$author->nationality}}</td>
     </tr>
-      <!-- <tr>
-        <td>{{$author->getDetail()}}</td>
-      </tr> -->
     @endforeach
   </table>
   @endsection
