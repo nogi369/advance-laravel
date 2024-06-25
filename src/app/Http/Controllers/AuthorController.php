@@ -89,8 +89,20 @@ class AuthorController extends Controller
     return redirect('/');
   }
 
+  // バリデーションエラー
   public function verror()
   {
   return view('verror');
+  }
+
+  // authorsテーブルのデータを返すアクション
+  public function relate(Request $request)
+  {
+      // $items = Author::all();
+      // return view('author.index', ['items' => $items]);
+      $hasItems = Author::has('book')->get();
+      $noItems = Author::doesntHave('book')->get();
+      $param = ['hasItems' => $hasItems, 'noItems' => $noItems];
+      return view('author.index',$param);
   }
 }
