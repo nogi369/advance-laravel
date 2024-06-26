@@ -9,7 +9,8 @@ class BookController extends Controller
 {
   // 本(Book)に関するデータを一覧表示する
   public function index(){
-      $items = Book::all();
+      // $items = Book::all();
+      $items = Book::with('author')->get();
       return view('book.index', ['items'=>$items]);
   }
   public function add(){
