@@ -20,6 +20,12 @@
       background-color: #EEEEEE;
       text-align: center;
     }
+
+    svg.w-5.h-5 {
+    /*paginateメソッドの矢印の大きさ調整のために追加*/
+    width: 30px;
+    height: 30px;
+    }
   </style>
 </head>
 
@@ -32,11 +38,14 @@
       <th>Data</th>
     </tr>
     @foreach ($authors as $author)
-      <tr>
-        <td>{{$author->getDetail()}}</td>
-      </tr>
+    <tr>
+      <td>
+        {{$author->getDetail()}}
+      </td>
+    </tr>
     @endforeach
   </table>
+  {{ $authors->links() }}
   @endsection
 </body>
 
