@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Person;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\SessionController;
@@ -41,3 +42,23 @@ Route::post('/add', [BookController::class, 'create']);
 
 Route::get('/session', [SessionController::class, 'getSes']);
 Route::post('/session', [SessionController::class, 'postSes']);
+
+// id=1のレコードを論理削除
+Route::get('/softdelete', function () {
+    Person::find(2)->delete();
+});
+// 論理削除されたレコードの確認
+Route::get('softdelete/get', function() {
+  $person = Person::onlyTrashed()->get();
+  dd($person);
+});
+// 削除されたレコードの復元
+Route::get('softdelete/store', function() {
+  $result = Person::onlyTrashed()->restore();
+  echo $result;
+});
+// 論理削除したレコードの完全削除
+Route::get('softdelete/absolute', function() {
+  $result = Person::onlyTrashed()->forceDelete();
+  echo $result;
+});
