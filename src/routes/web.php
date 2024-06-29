@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Person;
+use App\Models\Product;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\SessionController;
@@ -61,4 +62,11 @@ Route::get('softdelete/store', function() {
 Route::get('softdelete/absolute', function() {
   $result = Person::onlyTrashed()->forceDelete();
   echo $result;
+});
+
+Route::get('uuid',function() {
+    $products = Product::all();
+    foreach($products as $product){
+        echo $product.'<br>';
+    }
 });
